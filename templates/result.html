@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+{% block title %}תוצאות · {{ course.name }} · Tofes0{% endblock %}
+{% block content %}
+<p class="crumbs">
+  <a href="{{ url_for('course', course_id=course.id) }}">{{ course.name }}</a> ‹ תוצאות
+</p>
+<div class="score {% if score >= 56 %}pass{% else %}fail{% endif %}">
+  <span>הציון שלך</span>
+  <strong>{{ score }}</strong>
+</div>
+
+{% for r in results %}
+{% set q = r.q %}
+<div class="question result {% if r.correct %}ok{% else %}bad{% endif %}">
+  {% if r.context %}<div class="context">{{ r.context }}</div>{% endif %}
+  <p class="qtext"><b>שאלה {{ loop.index }}.</b> {{ q.text }}</p>
+  <ul class="opts">
+    {% for orig in r.order %}
+    <li class="{% if orig == 0 %}right{% elif orig == r.chosen %}wrong{% endif %}">
+      <span class="letter">{{ LETTERS[loop.index0] }}.</span> {{ q.options[orig] }}
+      {% if orig == 0 %} ✔{% elif orig == r.chosen %} ✘{% endif %}
+    </li>
+    {% endfor %}
+  </ul>
+  {% if r.chosen is none %}<p class="muted">לא סימנת תשובה.</p>{% endif %}
+  {% if q.explanation %}<div class="explain"><b>פתרון:</b> {{ q.explanation }}</div>{% endif %}
+  {% if q.source %}<p class="source">מקור: {{ q.source }}</p>{% endif %}
+</div>
+{% endfor %}
+
+<div class="row">
+  <a class="btn" href="{{ url_for('take_quiz', course_id=course.id) }}">מבחן חדש</a>
+  <a class="btn ghost" href="{{ url_for('course', course_id=course.id) }}">חזרה למקצוע</a>
+</div>
+{% endblock %}

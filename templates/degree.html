@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block title %}{{ degree.name }} · Tofes0{% endblock %}
+{% block content %}
+<p class="crumbs"><a href="{{ url_for('home') }}">תארים</a> ‹ {{ degree.name }}</p>
+<h1>בחר/י מקצוע</h1>
+<div class="cards">
+  {% for c in courses %}
+  <a class="card" href="{{ url_for('course', course_id=c.id) }}">
+    <strong>{{ c.name }}</strong>
+    <span class="muted">{% if c.count %}{{ c.count }} שאלות במאגר{% else %}בקרוב{% endif %}</span>
+  </a>
+  {% endfor %}
+</div>
+{% endblock %}

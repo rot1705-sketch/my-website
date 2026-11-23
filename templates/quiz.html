@@ -1,0 +1,34 @@
+{% extends "base.html" %}
+{% block title %}מבחן · {{ course.name }} · Tofes0{% endblock %}
+{% block content %}
+<p class="crumbs">
+  <a href="{{ url_for('course', course_id=course.id) }}">{{ course.name }}</a> ‹ מבחן תרגול
+</p>
+<h1>מבחן תרגול: {{ course.name }}</h1>
+
+<form method="post">
+  <input type="hidden" name="qids" value="{{ qids }}">
+  {% set num = namespace(i=0) %}
+  {% for g in groups %}
+  <div class="group">
+    {% if g.context %}<div class="context">{{ g.context }}</div>{% endif %}
+    {% for item in g.questions %}
+    {% set num.i = num.i + 1 %}
+    {% set q = item.q %}
+    <fieldset class="question">
+      <legend>שאלה {{ num.i }}</legend>
+      <p class="qtext">{{ q.text }}</p>
+      <input type="hidden" name="order_{{ q.id }}" value="{{ item.order|join(',') }}">
+      {% for orig in item.order %}
+      <label class="opt">
+        <input type="radio" name="ans_{{ q.id }}" value="{{ orig }}">
+        <span class="letter">{{ LETTERS[loop.index0] }}.</span> {{ q.options[orig] }}
+      </label>
+      {% endfor %}
+    </fieldset>
+    {% endfor %}
+  </div>
+  {% endfor %}
+  <button class="btn big">הגש מבחן</button>
+</form>
+{% endblock %}
