@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<section class="hero">
+  <h1>מתכוננים למבחן? 📚</h1>
+  <p>Tofes0 בונה לך מבחני תרגול רנדומליים מתוך טפסי 0 של המקצוע שלך, עם ציון ופתרון מלא לכל שאלה.</p>
+  <div class="row center">
+    <a class="btn big" href="{{ url_for('login') }}">כניסה עם Google, חינם</a>
+  </div>
+</section>
+<div class="cards">
+  <div class="card"><strong>🎓 בוחרים תואר ומקצוע</strong><span class="muted">המבחן נבנה רק מהחומר של הקורס שלך.</span></div>
+  <div class="card"><strong>🎲 מבחן חדש בכל פעם</strong><span class="muted">שאלות אקראיות, והתשובות מתערבבות.</span></div>
+  <div class="card"><strong>✅ ציון ופתרון</strong><span class="muted">רואים מה טעית ולמה.</span></div>
+  <div class="card"><strong>📄 דפי נוסחאות</strong><span class="muted">לכל מקצוע, במקום אחד.</span></div>
+</div>
+{% endblock %}

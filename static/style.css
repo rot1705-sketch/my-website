@@ -40,4 +40,19 @@ select { font: inherit; padding: 4px 8px; margin-inline-start: 6px; }
 .opts li.right { background: var(--okbg); color: var(--ok); font-weight: 600; }
 .opts li.wrong { background: var(--badbg); color: var(--bad); text-decoration: line-through; }
 .explain { margin-top: 10px; padding: 10px; background: var(--bg); border-radius: 8px; white-space: pre-line; }
+.user { margin-inline-start: auto; display: flex; gap: 12px; align-items: center; }
+.user form { margin: 0; }
+.link { font: inherit; background: none; border: 0; color: var(--brand); cursor: pointer; padding: 0; text-decoration: underline; }
+.btn.small { padding: 4px 12px; }
+.top { flex-wrap: wrap; }
+.auth { max-width: 420px; margin: 24px auto; }
+.auth label { display: block; margin-bottom: 12px; font-weight: 600; }
+.btn.google { display: flex; gap: 10px; align-items: center; justify-content: center; background: #fff; color: var(--ink); border-color: var(--line); }
+.btn.google:hover { border-color: var(--brand); }
+.auth select { display: block; width: 100%; margin: 4px 0 0; padding: 8px 10px; border: 1px solid var(--line); border-radius: 8px; }
+.auth input { display: block; width: 100%; font: inherit; padding: 8px 10px; margin-top: 4px; border: 1px solid var(--line); border-radius: 8px; }
+.error { background: var(--badbg); color: var(--bad); padding: 8px 12px; border-radius: 8px; }
+.hero { text-align: center; padding: 24px 0 8px; }
+.hero p { font-size: 1.15rem; color: var(--muted); }
+.row.center { justify-content: center; }
 .source { font-size: .85rem; color: var(--muted); margin-bottom: 0; }

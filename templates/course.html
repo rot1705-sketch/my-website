@@ -2,7 +2,7 @@
 {% block title %}{{ course.name }} · Tofes0{% endblock %}
 {% block content %}
 <p class="crumbs">
-  <a href="{{ url_for('home') }}">תארים</a> ‹
+  <a href="{{ url_for('degrees') }}">כל התחומים</a> ‹
   <a href="{{ url_for('degree', degree_id=degree.id) }}">{{ degree.name }}</a> ‹ {{ course.name }}
 </p>
 <h1>{{ course.name }}</h1>

@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+{% block title %}{% if first_time %}השלמת הרשמה{% else %}הפרופיל שלי{% endif %} · Tofes0{% endblock %}
+{% block content %}
+<div class="auth panel">
+  <h1>{% if first_time %}כמעט סיימנו 👋{% else %}הפרופיל שלי{% endif %}</h1>
+  {% if first_time %}<p class="muted">ספר/י לנו קצת עליך, כדי שנתאים לך את המבחנים.</p>{% endif %}
+  {% if error %}<p class="error">{{ error }}</p>{% endif %}
+  <form method="post">
+    <input type="hidden" name="csrf" value="{{ csrf_token() }}">
+    <label>מוסד אקדמי
+      <select name="institution" required>
+        <option value="">בחר/י מוסד…</option>
+        {% for inst in options.institutions %}
+        <option {% if form.institution == inst %}selected{% endif %}>{{ inst }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>שנת לימוד
+      <select name="study_year" required>
+        <option value="">בחר/י שנה…</option>
+        {% for y in options.years %}
+        <option {% if form.study_year == y %}selected{% endif %}>{{ y }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <label>תחום לימוד
+      <select name="degree_id" required>
+        <option value="">בחר/י תחום…</option>
+        {% for d in degrees %}
+        <option value="{{ d.id }}" {% if form.degree_id == d.id %}selected{% endif %}>{{ d.name }}</option>
+        {% endfor %}
+      </select>
+    </label>
+    <button class="btn big">{% if first_time %}סיום הרשמה{% else %}שמירה{% endif %}</button>
+  </form>
+</div>
+{% endblock %}
